@@ -20,46 +20,35 @@ public class ContainerSmeltingFurnace extends Container
     private int lastBurnTime = 0;
     private int lastItemBurnTime = 0;
 
-    public ContainerSmeltingFurnace(InventoryPlayer par1InventoryPlayer,
-            TileEntitySmeltingFurnace par2TileEntitySmeltingFurnace)
+    public ContainerSmeltingFurnace(InventoryPlayer par1InventoryPlayer, TileEntitySmeltingFurnace par2TileEntitySmeltingFurnace)
     {
         this.furnace = par2TileEntitySmeltingFurnace;
-        this.addSlotToContainer(new Slot(par2TileEntitySmeltingFurnace, 0, 56,
-                17));
-        this.addSlotToContainer(new Slot(par2TileEntitySmeltingFurnace, 1, 10,
-                36));
-        this.addSlotToContainer(new SlotSmeltingFurnace(
-                par1InventoryPlayer.player, par2TileEntitySmeltingFurnace, 2,
-                116, 35));
-        this.addSlotToContainer(new Slot(par2TileEntitySmeltingFurnace, 3, 56,
-                52));
+        this.addSlotToContainer(new Slot(par2TileEntitySmeltingFurnace, 0, 56, 17));
+        this.addSlotToContainer(new Slot(par2TileEntitySmeltingFurnace, 1, 10, 36));
+        this.addSlotToContainer(new SlotSmeltingFurnace(par1InventoryPlayer.player, par2TileEntitySmeltingFurnace, 2, 116, 35));
+        this.addSlotToContainer(new Slot(par2TileEntitySmeltingFurnace, 3, 56, 52));
         int i;
 
         for (i = 0; i < 3; ++i)
         {
             for (int j = 0; j < 9; ++j)
             {
-                this.addSlotToContainer(new Slot(par1InventoryPlayer, j + i * 9
-                        + 9, 8 + j * 18, 84 + i * 18));
+                this.addSlotToContainer(new Slot(par1InventoryPlayer, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
             }
         }
 
         for (i = 0; i < 9; ++i)
         {
-            this.addSlotToContainer(new Slot(par1InventoryPlayer, i,
-                    8 + i * 18, 142));
+            this.addSlotToContainer(new Slot(par1InventoryPlayer, i, 8 + i * 18, 142));
         }
     }
 
     public void addCraftingToCrafters(ICrafting par1ICrafting)
     {
         super.addCraftingToCrafters(par1ICrafting);
-        par1ICrafting.sendProgressBarUpdate(this, 0,
-                this.furnace.furnaceCookTime);
-        par1ICrafting.sendProgressBarUpdate(this, 1,
-                this.furnace.smeltingFurnaceBurnTime);
-        par1ICrafting.sendProgressBarUpdate(this, 2,
-                this.furnace.currentItemBurnTime);
+        par1ICrafting.sendProgressBarUpdate(this, 0, this.furnace.furnaceCookTime);
+        par1ICrafting.sendProgressBarUpdate(this, 1, this.furnace.smeltingFurnaceBurnTime);
+        par1ICrafting.sendProgressBarUpdate(this, 2, this.furnace.currentItemBurnTime);
     }
 
     /**
@@ -75,20 +64,17 @@ public class ContainerSmeltingFurnace extends Container
 
             if (this.lastCookTime != this.furnace.furnaceCookTime)
             {
-                icrafting.sendProgressBarUpdate(this, 0,
-                        this.furnace.furnaceCookTime);
+                icrafting.sendProgressBarUpdate(this, 0, this.furnace.furnaceCookTime);
             }
 
             if (this.lastBurnTime != this.furnace.smeltingFurnaceBurnTime)
             {
-                icrafting.sendProgressBarUpdate(this, 1,
-                        this.furnace.smeltingFurnaceBurnTime);
+                icrafting.sendProgressBarUpdate(this, 1, this.furnace.smeltingFurnaceBurnTime);
             }
 
             if (this.lastItemBurnTime != this.furnace.currentItemBurnTime)
             {
-                icrafting.sendProgressBarUpdate(this, 2,
-                        this.furnace.currentItemBurnTime);
+                icrafting.sendProgressBarUpdate(this, 2, this.furnace.currentItemBurnTime);
             }
         }
 
@@ -157,8 +143,7 @@ public class ContainerSmeltingFurnace extends Container
                     {
                         return null;
                     }
-                } else if (par2 >= 30 && par2 < 39
-                        && !this.mergeItemStack(itemstack1, 3, 30, false))
+                } else if (par2 >= 30 && par2 < 39 && !this.mergeItemStack(itemstack1, 3, 30, false))
                 {
                     return null;
                 }

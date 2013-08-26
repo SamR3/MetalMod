@@ -19,31 +19,23 @@ public class GuiSmeltingFurnace extends GuiContainer
 {
     private TileEntitySmeltingFurnace smeltingFurnaceInventory;
 
-    public GuiSmeltingFurnace(InventoryPlayer par1InventoryPlayer,
-            TileEntitySmeltingFurnace par2TileEntityFurnace)
+    public GuiSmeltingFurnace(InventoryPlayer par1InventoryPlayer, TileEntitySmeltingFurnace par2TileEntityFurnace)
     {
-        super(new ContainerSmeltingFurnace(par1InventoryPlayer,
-                par2TileEntityFurnace));
+        super(new ContainerSmeltingFurnace(par1InventoryPlayer, par2TileEntityFurnace));
         this.smeltingFurnaceInventory = par2TileEntityFurnace;
     }
 
     protected void drawGuiContainerForegroundLayer(int par1, int par2)
     {
         String s = "Smelting Furnace";
-        this.fontRenderer.drawString(s,
-                this.xSize / 2 - this.fontRenderer.getStringWidth(s) / 2, 6,
-                4210752);
-        this.fontRenderer.drawString(
-                StatCollector.translateToLocal("container.inventory"), 8,
-                this.ySize - 96 + 2, 4210752);
+        this.fontRenderer.drawString(s, this.xSize / 2 - this.fontRenderer.getStringWidth(s) / 2, 6, 4210752);
+        this.fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, this.ySize - 96 + 2, 4210752);
     }
 
-    protected void drawGuiContainerBackgroundLayer(float par1, int par2,
-            int par3)
+    protected void drawGuiContainerBackgroundLayer(float par1, int par2, int par3)
     {
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-        this.mc.renderEngine
-                .bindTexture("/mods/metalmod/textures/gui/furnacegui.png");
+        this.mc.renderEngine.bindTexture("/mods/metalmod/textures/gui/furnacegui.png");
         int k = (this.width - this.xSize) / 2;
         int l = (this.height - this.ySize) / 2;
         this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
@@ -52,8 +44,7 @@ public class GuiSmeltingFurnace extends GuiContainer
         if (this.smeltingFurnaceInventory.isBurning())
         {
             i1 = this.smeltingFurnaceInventory.getBurnTimeRemainingScaled(12);
-            this.drawTexturedModalRect(k + 11, l + 32 - i1, 176, 13 - i1, 14,
-                    i1);
+            this.drawTexturedModalRect(k + 11, l + 32 - i1, 176, 13 - i1, 14, i1);
         }
 
         i1 = this.smeltingFurnaceInventory.getCookProgressScaled(49);

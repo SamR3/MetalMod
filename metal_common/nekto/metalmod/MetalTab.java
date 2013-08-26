@@ -13,6 +13,6 @@ public class MetalTab extends CreativeTabs
     @Override
     public ItemStack getIconItemStack()
     {
-        return new ItemStack(MetalMod.refinedIron);
+        return new ItemStack(BlockItemRegistry.refinedIron);
     }
 }

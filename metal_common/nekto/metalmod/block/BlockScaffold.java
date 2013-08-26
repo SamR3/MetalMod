@@ -26,8 +26,7 @@ public class BlockScaffold extends Block
 
     public Icon getIcon(int par1, int par2)
     {
-        return par1 == 1 ? this.field_94458_cO
-                : (par1 == 0 ? this.field_94458_cO : this.blockIcon);
+        return par1 == 1 ? this.field_94458_cO : (par1 == 0 ? this.field_94458_cO : this.blockIcon);
     }
 
     public boolean isOpaqueCube()
@@ -50,9 +49,7 @@ public class BlockScaffold extends Block
     @Override
     public void registerIcons(IconRegister par1IconRegister)
     {
-        this.blockIcon = par1IconRegister.registerIcon(GeneralRef.TEXTURE_PATH
-                + "scaffold_side");
-        this.field_94458_cO = par1IconRegister
-                .registerIcon(GeneralRef.TEXTURE_PATH + "scaffold_top");
+        this.blockIcon = par1IconRegister.registerIcon(GeneralRef.TEXTURE_PATH + "scaffold_side");
+        this.field_94458_cO = par1IconRegister.registerIcon(GeneralRef.TEXTURE_PATH + "scaffold_top");
     }
 }

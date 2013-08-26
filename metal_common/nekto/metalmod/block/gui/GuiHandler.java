@@ -15,15 +15,13 @@ public class GuiHandler implements IGuiHandler
 
     // returns an instance of the Container
     @Override
-    public Object getServerGuiElement(int id, EntityPlayer player, World world,
-            int x, int y, int z)
+    public Object getServerGuiElement(int id, EntityPlayer player, World world, int x, int y, int z)
     {
         TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
 
         if (tileEntity instanceof TileEntitySmeltingFurnace)
         {
-            return new ContainerSmeltingFurnace(player.inventory,
-                    (TileEntitySmeltingFurnace) tileEntity);
+            return new ContainerSmeltingFurnace(player.inventory, (TileEntitySmeltingFurnace) tileEntity);
         }
 
         return null;
@@ -31,15 +29,13 @@ public class GuiHandler implements IGuiHandler
 
     // returns an instance of the Gui
     @Override
-    public Object getClientGuiElement(int id, EntityPlayer player, World world,
-            int x, int y, int z)
+    public Object getClientGuiElement(int id, EntityPlayer player, World world, int x, int y, int z)
     {
         TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
 
         if (tileEntity instanceof TileEntitySmeltingFurnace)
         {
-            return new GuiSmeltingFurnace(player.inventory,
-                    (TileEntitySmeltingFurnace) tileEntity);
+            return new GuiSmeltingFurnace(player.inventory, (TileEntitySmeltingFurnace) tileEntity);
         }
 
         return null;

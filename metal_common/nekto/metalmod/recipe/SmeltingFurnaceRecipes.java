@@ -32,18 +32,13 @@ public class SmeltingFurnaceRecipes
          * Params: Int par1: First input ID Int par2: Second input ID ItemStack
          * par3IteemStack: Output Float par4: Experience
          */
-        this.addAlloy(MetalMod.copperIngot.itemID,
-                MetalMod.aluminumIngot.itemID, new ItemStack(
-                        MetalMod.duraluminIngot), 1F);
+        this.addAlloy(MetalMod.copperIngot.itemID, MetalMod.aluminumIngot.itemID, new ItemStack(MetalMod.duraluminIngot), 1F);
     }
 
     public void addAlloy(int par1, int par2, ItemStack par3ItemStack, float par4)
     {
-        this.alloyList.put(
-                Arrays.asList(Integer.valueOf(par1), Integer.valueOf(par2)),
-                par3ItemStack);
-        this.experienceList.put(Integer.valueOf(par3ItemStack.itemID),
-                Float.valueOf(par4));
+        this.alloyList.put(Arrays.asList(Integer.valueOf(par1), Integer.valueOf(par2)), par3ItemStack);
+        this.experienceList.put(Integer.valueOf(par3ItemStack.itemID), Float.valueOf(par4));
     }
 
     public Map getAlloyList()
@@ -58,8 +53,7 @@ public class SmeltingFurnaceRecipes
             return null;
         }
 
-        ItemStack ret = (ItemStack) alloyList.get(Arrays.asList(
-                Integer.valueOf(par1), Integer.valueOf(par2)));
+        ItemStack ret = (ItemStack) alloyList.get(Arrays.asList(Integer.valueOf(par1), Integer.valueOf(par2)));
 
         if (ret != null)
         {
@@ -67,8 +61,7 @@ public class SmeltingFurnaceRecipes
 
         } else
         {
-            ret = (ItemStack) alloyList.get(Arrays.asList(
-                    Integer.valueOf(par2), Integer.valueOf(par1)));
+            ret = (ItemStack) alloyList.get(Arrays.asList(Integer.valueOf(par2), Integer.valueOf(par1)));
 
             if (ret != null)
                 return ret;
@@ -86,9 +79,7 @@ public class SmeltingFurnaceRecipes
 
         float ret = item.getItem().getSmeltingExperience(item);
 
-        if (ret < 0
-                && experienceList.containsKey(Arrays.asList(item.itemID,
-                        item.getItemDamage())))
+        if (ret < 0 && experienceList.containsKey(Arrays.asList(item.itemID, item.getItemDamage())))
         {
             ret = ((Float) experienceList.get(Integer.valueOf(item.itemID)));
         }

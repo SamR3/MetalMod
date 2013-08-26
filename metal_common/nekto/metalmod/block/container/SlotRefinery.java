@@ -14,8 +14,7 @@ public class SlotRefinery extends Slot
     private EntityPlayer thePlayer;
     private int field_75228_b;
 
-    public SlotRefinery(EntityPlayer par1EntityPlayer,
-            IInventory par2IInventory, int par3, int par4, int par5)
+    public SlotRefinery(EntityPlayer par1EntityPlayer, IInventory par2IInventory, int par3, int par4, int par5)
     {
         super(par2IInventory, par3, par4, par5);
         this.thePlayer = par1EntityPlayer;
@@ -36,8 +35,7 @@ public class SlotRefinery extends Slot
         return super.decrStackSize(par1);
     }
 
-    public void onPickupFromSlot(EntityPlayer par1EntityPlayer,
-            ItemStack par2ItemStack)
+    public void onPickupFromSlot(EntityPlayer par1EntityPlayer, ItemStack par2ItemStack)
     {
         this.onCrafting(par2ItemStack);
         super.onPickupFromSlot(par1EntityPlayer, par2ItemStack);
@@ -51,8 +49,7 @@ public class SlotRefinery extends Slot
 
     protected void onCrafting(ItemStack par1ItemStack)
     {
-        par1ItemStack.onCrafting(this.thePlayer.worldObj, this.thePlayer,
-                this.field_75228_b);
+        par1ItemStack.onCrafting(this.thePlayer.worldObj, this.thePlayer, this.field_75228_b);
 
         if (!this.thePlayer.worldObj.isRemote)
         {
@@ -67,8 +64,7 @@ public class SlotRefinery extends Slot
             {
                 j = MathHelper.floor_float((float) i * f);
 
-                if (j < MathHelper.ceiling_float_int((float) i * f)
-                        && (float) Math.random() < (float) i * f - (float) j)
+                if (j < MathHelper.ceiling_float_int((float) i * f) && (float) Math.random() < (float) i * f - (float) j)
                 {
                     ++j;
                 }
@@ -80,10 +76,7 @@ public class SlotRefinery extends Slot
             {
                 j = EntityXPOrb.getXPSplit(i);
                 i -= j;
-                this.thePlayer.worldObj.spawnEntityInWorld(new EntityXPOrb(
-                        this.thePlayer.worldObj, this.thePlayer.posX,
-                        this.thePlayer.posY + 0.5D, this.thePlayer.posZ + 0.5D,
-                        j));
+                this.thePlayer.worldObj.spawnEntityInWorld(new EntityXPOrb(this.thePlayer.worldObj, this.thePlayer.posX, this.thePlayer.posY + 0.5D, this.thePlayer.posZ + 0.5D, j));
             }
         }
 

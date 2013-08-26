@@ -57,8 +57,7 @@ public class BlockSmeltingFurnace extends BlockContainer
         this.setDefaultDirection(par1World, par2, par3, par4);
     }
 
-    private void setDefaultDirection(World par1World, int par2, int par3,
-            int par4)
+    private void setDefaultDirection(World par1World, int par2, int par3, int par4)
     {
         if (!par1World.isRemote)
         {
@@ -108,39 +107,30 @@ public class BlockSmeltingFurnace extends BlockContainer
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister par1IconRegister)
     {
-        this.furnace_side = par1IconRegister
-                .registerIcon(GeneralRef.TEXTURE_PATH + "furnace_side");
-        this.furnace_front = par1IconRegister
-                .registerIcon(this.isLit ? (GeneralRef.TEXTURE_PATH + "furnace_front_lit")
-                        : (GeneralRef.TEXTURE_PATH + "furnace_front"));
-        this.furnace_top = par1IconRegister
-                .registerIcon(GeneralRef.TEXTURE_PATH + "furnace_top");
+        this.furnace_side = par1IconRegister.registerIcon(GeneralRef.TEXTURE_PATH + "furnace_side");
+        this.furnace_front = par1IconRegister.registerIcon(this.isLit ? (GeneralRef.TEXTURE_PATH + "furnace_front_lit") : (GeneralRef.TEXTURE_PATH + "furnace_front"));
+        this.furnace_top = par1IconRegister.registerIcon(GeneralRef.TEXTURE_PATH + "furnace_top");
     }
 
-    public boolean onBlockActivated(World par1World, int par2, int par3,
-            int par4, EntityPlayer par5EntityPlayer, int par6, float par7,
-            float par8, float par9)
+    public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9)
     {
         if (par1World.isRemote)
         {
             return true;
         } else
         {
-            TileEntitySmeltingFurnace tileentitysmeltingfurnace = (TileEntitySmeltingFurnace) par1World
-                    .getBlockTileEntity(par2, par3, par4);
+            TileEntitySmeltingFurnace tileentitysmeltingfurnace = (TileEntitySmeltingFurnace) par1World.getBlockTileEntity(par2, par3, par4);
 
             if (tileentitysmeltingfurnace != null)
             {
-                par5EntityPlayer.openGui(MetalMod.instance, 0, par1World, par2,
-                        par3, par4);
+                par5EntityPlayer.openGui(MetalMod.instance, 0, par1World, par2, par3, par4);
             }
 
             return true;
         }
     }
 
-    public static void updateFurnaceBlockState(boolean par0, World par1World,
-            int par2, int par3, int par4)
+    public static void updateFurnaceBlockState(boolean par0, World par1World, int par2, int par3, int par4)
     {
         int l = par1World.getBlockMetadata(par2, par3, par4);
         TileEntity tileentity = par1World.getBlockTileEntity(par2, par3, par4);
@@ -148,12 +138,10 @@ public class BlockSmeltingFurnace extends BlockContainer
 
         if (par0)
         {
-            par1World.setBlock(par2, par3, par4,
-                    MetalMod.smeltingFurnaceLit.blockID);
+            par1World.setBlock(par2, par3, par4, MetalMod.smeltingFurnaceLit.blockID);
         } else
         {
-            par1World.setBlock(par2, par3, par4,
-                    MetalMod.smeltingFurnaceIdle.blockID);
+            par1World.setBlock(par2, par3, par4, MetalMod.smeltingFurnaceIdle.blockID);
         }
 
         keepFurnaceInventory = false;
@@ -167,43 +155,33 @@ public class BlockSmeltingFurnace extends BlockContainer
     }
 
     @SideOnly(Side.CLIENT)
-    public void randomDisplayTick(World par1World, int par2, int par3,
-            int par4, Random par5Random)
+    public void randomDisplayTick(World par1World, int par2, int par3, int par4, Random par5Random)
     {
         if (this.isLit)
         {
             int l = par1World.getBlockMetadata(par2, par3, par4);
             float f = (float) par2 + 0.5F;
-            float f1 = (float) par3 + 0.0F + par5Random.nextFloat() * 6.0F
-                    / 16.0F;
+            float f1 = (float) par3 + 0.0F + par5Random.nextFloat() * 6.0F / 16.0F;
             float f2 = (float) par4 + 0.5F;
             float f3 = 0.52F;
             float f4 = par5Random.nextFloat() * 0.6F - 0.3F;
 
             if (l == 4)
             {
-                par1World.spawnParticle("smoke", (double) (f - f3),
-                        (double) f1, (double) (f2 + f4), 0.0D, 0.0D, 0.0D);
-                par1World.spawnParticle("flame", (double) (f - f3),
-                        (double) f1, (double) (f2 + f4), 0.0D, 0.0D, 0.0D);
+                par1World.spawnParticle("smoke", (double) (f - f3), (double) f1, (double) (f2 + f4), 0.0D, 0.0D, 0.0D);
+                par1World.spawnParticle("flame", (double) (f - f3), (double) f1, (double) (f2 + f4), 0.0D, 0.0D, 0.0D);
             } else if (l == 5)
             {
-                par1World.spawnParticle("smoke", (double) (f + f3),
-                        (double) f1, (double) (f2 + f4), 0.0D, 0.0D, 0.0D);
-                par1World.spawnParticle("flame", (double) (f + f3),
-                        (double) f1, (double) (f2 + f4), 0.0D, 0.0D, 0.0D);
+                par1World.spawnParticle("smoke", (double) (f + f3), (double) f1, (double) (f2 + f4), 0.0D, 0.0D, 0.0D);
+                par1World.spawnParticle("flame", (double) (f + f3), (double) f1, (double) (f2 + f4), 0.0D, 0.0D, 0.0D);
             } else if (l == 2)
             {
-                par1World.spawnParticle("smoke", (double) (f + f4),
-                        (double) f1, (double) (f2 - f3), 0.0D, 0.0D, 0.0D);
-                par1World.spawnParticle("flame", (double) (f + f4),
-                        (double) f1, (double) (f2 - f3), 0.0D, 0.0D, 0.0D);
+                par1World.spawnParticle("smoke", (double) (f + f4), (double) f1, (double) (f2 - f3), 0.0D, 0.0D, 0.0D);
+                par1World.spawnParticle("flame", (double) (f + f4), (double) f1, (double) (f2 - f3), 0.0D, 0.0D, 0.0D);
             } else if (l == 3)
             {
-                par1World.spawnParticle("smoke", (double) (f + f4),
-                        (double) f1, (double) (f2 + f3), 0.0D, 0.0D, 0.0D);
-                par1World.spawnParticle("flame", (double) (f + f4),
-                        (double) f1, (double) (f2 + f3), 0.0D, 0.0D, 0.0D);
+                par1World.spawnParticle("smoke", (double) (f + f4), (double) f1, (double) (f2 + f3), 0.0D, 0.0D, 0.0D);
+                par1World.spawnParticle("flame", (double) (f + f4), (double) f1, (double) (f2 + f3), 0.0D, 0.0D, 0.0D);
             }
         }
     }
@@ -213,11 +191,9 @@ public class BlockSmeltingFurnace extends BlockContainer
         return new TileEntitySmeltingFurnace();
     }
 
-    public void onBlockPlacedBy(World par1World, int par2, int par3, int par4,
-            EntityLiving par5EntityLiving, ItemStack par6ItemStack)
+    public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLiving par5EntityLiving, ItemStack par6ItemStack)
     {
-        int l = MathHelper
-                .floor_double((double) (par5EntityLiving.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
+        int l = MathHelper.floor_double((double) (par5EntityLiving.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
 
         if (l == 0)
         {
@@ -241,26 +217,21 @@ public class BlockSmeltingFurnace extends BlockContainer
 
         if (par6ItemStack.hasDisplayName())
         {
-            ((TileEntitySmeltingFurnace) par1World.getBlockTileEntity(par2,
-                    par3, par4)).func_94129_a(par6ItemStack.getDisplayName());
+            ((TileEntitySmeltingFurnace) par1World.getBlockTileEntity(par2, par3, par4)).func_94129_a(par6ItemStack.getDisplayName());
         }
     }
 
-    public void breakBlock(World par1World, int par2, int par3, int par4,
-            int par5, int par6)
+    public void breakBlock(World par1World, int par2, int par3, int par4, int par5, int par6)
     {
         if (!keepFurnaceInventory)
         {
-            TileEntitySmeltingFurnace tileentitysmeltingfurnace = (TileEntitySmeltingFurnace) par1World
-                    .getBlockTileEntity(par2, par3, par4);
+            TileEntitySmeltingFurnace tileentitysmeltingfurnace = (TileEntitySmeltingFurnace) par1World.getBlockTileEntity(par2, par3, par4);
 
             if (tileentitysmeltingfurnace != null)
             {
-                for (int j1 = 0; j1 < tileentitysmeltingfurnace
-                        .getSizeInventory(); ++j1)
+                for (int j1 = 0; j1 < tileentitysmeltingfurnace.getSizeInventory(); ++j1)
                 {
-                    ItemStack itemstack = tileentitysmeltingfurnace
-                            .getStackInSlot(j1);
+                    ItemStack itemstack = tileentitysmeltingfurnace.getStackInSlot(j1);
 
                     if (itemstack != null)
                     {
@@ -278,27 +249,18 @@ public class BlockSmeltingFurnace extends BlockContainer
                             }
 
                             itemstack.stackSize -= k1;
-                            EntityItem entityitem = new EntityItem(par1World,
-                                    (double) ((float) par2 + f),
-                                    (double) ((float) par3 + f1),
-                                    (double) ((float) par4 + f2),
-                                    new ItemStack(itemstack.itemID, k1,
-                                            itemstack.getItemDamage()));
+                            EntityItem entityitem = new EntityItem(par1World, (double) ((float) par2 + f), (double) ((float) par3 + f1), (double) ((float) par4 + f2), new ItemStack(itemstack.itemID,
+                                    k1, itemstack.getItemDamage()));
 
                             if (itemstack.hasTagCompound())
                             {
-                                entityitem.getEntityItem().setTagCompound(
-                                        (NBTTagCompound) itemstack
-                                                .getTagCompound().copy());
+                                entityitem.getEntityItem().setTagCompound((NBTTagCompound) itemstack.getTagCompound().copy());
                             }
 
                             float f3 = 0.05F;
-                            entityitem.motionX = (double) ((float) this.rand
-                                    .nextGaussian() * f3);
-                            entityitem.motionY = (double) ((float) this.rand
-                                    .nextGaussian() * f3 + 0.2F);
-                            entityitem.motionZ = (double) ((float) this.rand
-                                    .nextGaussian() * f3);
+                            entityitem.motionX = (double) ((float) this.rand.nextGaussian() * f3);
+                            entityitem.motionY = (double) ((float) this.rand.nextGaussian() * f3 + 0.2F);
+                            entityitem.motionZ = (double) ((float) this.rand.nextGaussian() * f3);
                             par1World.spawnEntityInWorld(entityitem);
                         }
                     }

@@ -91,7 +91,6 @@ public class MetalMod
     private void registerMisc()
     {
         NetworkRegistry.instance().registerGuiHandler(this, new GuiHandler());
-        GameRegistry.registerTileEntity(TileEntitySmeltingFurnace.class,
-                "containerSmeltingFurnace");
+        GameRegistry.registerTileEntity(TileEntitySmeltingFurnace.class, "containerSmeltingFurnace");
     }
 }

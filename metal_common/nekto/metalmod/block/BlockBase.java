@@ -24,8 +24,7 @@ public class BlockBase extends Block
     @Override
     public void registerIcons(IconRegister par1IconRegister)
     {
-        this.blockIcon = par1IconRegister.registerIcon(GeneralRef.TEXTURE_PATH
-                + this.getUnlocalizedName().substring(5));
+        this.blockIcon = par1IconRegister.registerIcon(GeneralRef.TEXTURE_PATH + this.getUnlocalizedName().substring(5));
     }
 
 }

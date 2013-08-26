@@ -24,8 +24,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class TileEntitySmeltingFurnace extends TileEntity implements
-        ISidedInventory, net.minecraftforge.common.ISidedInventory
+public class TileEntitySmeltingFurnace extends TileEntity implements ISidedInventory, net.minecraftforge.common.ISidedInventory
 {
 
     // Honestly not sure what these are
@@ -69,8 +68,7 @@ public class TileEntitySmeltingFurnace extends TileEntity implements
                 return itemstack;
             } else
             {
-                itemstack = this.smeltingFurnaceItemStacks[par1]
-                        .splitStack(par2);
+                itemstack = this.smeltingFurnaceItemStacks[par1].splitStack(par2);
 
                 if (this.smeltingFurnaceItemStacks[par1].stackSize == 0)
                 {
@@ -102,8 +100,7 @@ public class TileEntitySmeltingFurnace extends TileEntity implements
     {
         this.smeltingFurnaceItemStacks[par1] = par2ItemStack;
 
-        if (par2ItemStack != null
-                && par2ItemStack.stackSize > this.getInventoryStackLimit())
+        if (par2ItemStack != null && par2ItemStack.stackSize > this.getInventoryStackLimit())
         {
             par2ItemStack.stackSize = this.getInventoryStackLimit();
         }
@@ -111,8 +108,7 @@ public class TileEntitySmeltingFurnace extends TileEntity implements
 
     public String getInvName()
     {
-        return this.isInvNameLocalized() ? this.field_94130_e
-                : "container.smeltingfurnace";
+        return this.isInvNameLocalized() ? this.field_94130_e : "container.smeltingfurnace";
     }
 
     public boolean isInvNameLocalized()
@@ -133,14 +129,12 @@ public class TileEntitySmeltingFurnace extends TileEntity implements
 
         for (int i = 0; i < nbttaglist.tagCount(); ++i)
         {
-            NBTTagCompound nbttagcompound1 = (NBTTagCompound) nbttaglist
-                    .tagAt(i);
+            NBTTagCompound nbttagcompound1 = (NBTTagCompound) nbttaglist.tagAt(i);
             byte b0 = nbttagcompound1.getByte("Slot");
 
             if (b0 >= 0 && b0 < this.smeltingFurnaceItemStacks.length)
             {
-                this.smeltingFurnaceItemStacks[b0] = ItemStack
-                        .loadItemStackFromNBT(nbttagcompound1);
+                this.smeltingFurnaceItemStacks[b0] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
             }
         }
 
@@ -157,8 +151,7 @@ public class TileEntitySmeltingFurnace extends TileEntity implements
     public void writeToNBT(NBTTagCompound par1NBTTagCompound)
     {
         super.writeToNBT(par1NBTTagCompound);
-        par1NBTTagCompound.setShort("BurnTime",
-                (short) this.smeltingFurnaceBurnTime);
+        par1NBTTagCompound.setShort("BurnTime", (short) this.smeltingFurnaceBurnTime);
         par1NBTTagCompound.setShort("CookTime", (short) this.furnaceCookTime);
         NBTTagList nbttaglist = new NBTTagList();
 
@@ -234,9 +227,7 @@ public class TileEntitySmeltingFurnace extends TileEntity implements
 
                         if (this.smeltingFurnaceItemStacks[1].stackSize == 0)
                         {
-                            this.smeltingFurnaceItemStacks[1] = this.smeltingFurnaceItemStacks[1]
-                                    .getItem().getContainerItemStack(
-                                            smeltingFurnaceItemStacks[1]);
+                            this.smeltingFurnaceItemStacks[1] = this.smeltingFurnaceItemStacks[1].getItem().getContainerItemStack(smeltingFurnaceItemStacks[1]);
                         }
                     }
                 }
@@ -260,9 +251,7 @@ public class TileEntitySmeltingFurnace extends TileEntity implements
             if (flag != this.smeltingFurnaceBurnTime > 0)
             {
                 flag1 = true;
-                BlockSmeltingFurnace.updateFurnaceBlockState(
-                        this.smeltingFurnaceBurnTime > 0, this.worldObj,
-                        this.xCoord, this.yCoord, this.zCoord);
+                BlockSmeltingFurnace.updateFurnaceBlockState(this.smeltingFurnaceBurnTime > 0, this.worldObj, this.xCoord, this.yCoord, this.zCoord);
             }
         }
 
@@ -282,19 +271,15 @@ public class TileEntitySmeltingFurnace extends TileEntity implements
             return false;
         } else
         {
-            ItemStack itemstack = SmeltingFurnaceRecipes.smelting()
-                    .getAlloyResult(this.smeltingFurnaceItemStacks[0].itemID,
-                            this.smeltingFurnaceItemStacks[3].itemID);
+            ItemStack itemstack = SmeltingFurnaceRecipes.smelting().getAlloyResult(this.smeltingFurnaceItemStacks[0].itemID, this.smeltingFurnaceItemStacks[3].itemID);
             if (itemstack == null)
                 return false;
             if (this.smeltingFurnaceItemStacks[2] == null)
                 return true;
             if (!this.smeltingFurnaceItemStacks[2].isItemEqual(itemstack))
                 return false;
-            int result = smeltingFurnaceItemStacks[2].stackSize
-                    + itemstack.stackSize;
-            return (result <= getInventoryStackLimit() && result <= itemstack
-                    .getMaxStackSize());
+            int result = smeltingFurnaceItemStacks[2].stackSize + itemstack.stackSize;
+            return (result <= getInventoryStackLimit() && result <= itemstack.getMaxStackSize());
         }
     }
 
@@ -302,9 +287,7 @@ public class TileEntitySmeltingFurnace extends TileEntity implements
     {
         if (this.canSmelt())
         {
-            ItemStack itemstack = SmeltingFurnaceRecipes.smelting()
-                    .getAlloyResult(this.smeltingFurnaceItemStacks[0].itemID,
-                            this.smeltingFurnaceItemStacks[3].itemID);
+            ItemStack itemstack = SmeltingFurnaceRecipes.smelting().getAlloyResult(this.smeltingFurnaceItemStacks[0].itemID, this.smeltingFurnaceItemStacks[3].itemID);
 
             if (this.smeltingFurnaceItemStacks[2] == null)
             {
@@ -340,8 +323,7 @@ public class TileEntitySmeltingFurnace extends TileEntity implements
             int i = par0ItemStack.getItem().itemID;
             Item item = par0ItemStack.getItem();
 
-            if (par0ItemStack.getItem() instanceof ItemBlock
-                    && Block.blocksList[i] != null)
+            if (par0ItemStack.getItem() instanceof ItemBlock && Block.blocksList[i] != null)
             {
                 Block block = Block.blocksList[i];
 
@@ -356,14 +338,11 @@ public class TileEntitySmeltingFurnace extends TileEntity implements
                 }
             }
 
-            if (item instanceof ItemTool
-                    && ((ItemTool) item).getToolMaterialName().equals("WOOD"))
+            if (item instanceof ItemTool && ((ItemTool) item).getToolMaterialName().equals("WOOD"))
                 return 200;
-            if (item instanceof ItemSword
-                    && ((ItemSword) item).getToolMaterialName().equals("WOOD"))
+            if (item instanceof ItemSword && ((ItemSword) item).getToolMaterialName().equals("WOOD"))
                 return 200;
-            if (item instanceof ItemHoe
-                    && ((ItemHoe) item).getMaterialName().equals("WOOD"))
+            if (item instanceof ItemHoe && ((ItemHoe) item).getMaterialName().equals("WOOD"))
                 return 200;
             if (i == Item.stick.itemID)
                 return 100;
@@ -386,9 +365,7 @@ public class TileEntitySmeltingFurnace extends TileEntity implements
 
     public boolean isUseableByPlayer(EntityPlayer par1EntityPlayer)
     {
-        return this.worldObj.getBlockTileEntity(this.xCoord, this.yCoord,
-                this.zCoord) != this ? false : par1EntityPlayer.getDistanceSq(
-                (double) this.xCoord + 0.5D, (double) this.yCoord + 0.5D,
+        return this.worldObj.getBlockTileEntity(this.xCoord, this.yCoord, this.zCoord) != this ? false : par1EntityPlayer.getDistanceSq((double) this.xCoord + 0.5D, (double) this.yCoord + 0.5D,
                 (double) this.zCoord + 0.5D) <= 64.0D;
     }
 
@@ -402,14 +379,12 @@ public class TileEntitySmeltingFurnace extends TileEntity implements
 
     public boolean isStackValidForSlot(int par1, ItemStack par2ItemStack)
     {
-        return par1 == 2 ? false : (par1 == 1 ? isItemFuel(par2ItemStack)
-                : true);
+        return par1 == 2 ? false : (par1 == 1 ? isItemFuel(par2ItemStack) : true);
     }
 
     public int[] getSizeInventorySide(int par1)
     {
-        return par1 == 0 ? field_102011_e : (par1 == 1 ? field_102010_d
-                : field_102009_f);
+        return par1 == 0 ? field_102011_e : (par1 == 1 ? field_102010_d : field_102009_f);
     }
 
     public boolean func_102007_a(int par1, ItemStack par2ItemStack, int par3)
@@ -419,8 +394,7 @@ public class TileEntitySmeltingFurnace extends TileEntity implements
 
     public boolean func_102008_b(int par1, ItemStack par2ItemStack, int par3)
     {
-        return par3 != 0 || par1 != 1
-                || par2ItemStack.itemID == Item.bucketEmpty.itemID;
+        return par3 != 0 || par1 != 1 || par2ItemStack.itemID == Item.bucketEmpty.itemID;
     }
 
     @Override

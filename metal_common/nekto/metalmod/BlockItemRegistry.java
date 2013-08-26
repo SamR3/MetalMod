@@ -1,11 +1,18 @@
 package nekto.metalmod;
 
-import cpw.mods.fml.common.registry.GameRegistry;
+import java.util.HashMap;
+import java.util.Map;
+
+import nekto.metalmod.ref.IDs;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+import cpw.mods.fml.common.registry.GameRegistry;
 
 public class BlockItemRegistry
 {
+    public static Map<Integer, Block> blockList = new HashMap<Integer, Block>();
+    public static Map<Integer, Item> itemList = new HashMap<Integer, Item>();
+    
     public static final Block aluminum;
     public static final Block aluminumOre;
     public static final Item aluminumBar;
@@ -47,7 +54,7 @@ public class BlockItemRegistry
 
     public static void init()
     {
-        
+        BlockItemRegistry.blockList.put(IDs.aluminum_default, aluminum);
 
         registerBlocks();
         registerItems();

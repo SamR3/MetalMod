@@ -34,14 +34,10 @@ public class RefineryRecipes
          */
     }
 
-    public void addRefining(int par1, int par2, ItemStack par3ItemStack,
-            float par4)
+    public void addRefining(int par1, int par2, ItemStack par3ItemStack, float par4)
     {
-        this.refiningList.put(
-                Arrays.asList(Integer.valueOf(par1), Integer.valueOf(par2)),
-                par3ItemStack);
-        this.experienceList.put(Integer.valueOf(par3ItemStack.itemID),
-                Float.valueOf(par4));
+        this.refiningList.put(Arrays.asList(Integer.valueOf(par1), Integer.valueOf(par2)), par3ItemStack);
+        this.experienceList.put(Integer.valueOf(par3ItemStack.itemID), Float.valueOf(par4));
     }
 
     public Map getRefiningList()
@@ -56,8 +52,7 @@ public class RefineryRecipes
             return null;
         }
 
-        ItemStack ret = (ItemStack) refiningList.get(Arrays.asList(
-                Integer.valueOf(par1), Integer.valueOf(par2)));
+        ItemStack ret = (ItemStack) refiningList.get(Arrays.asList(Integer.valueOf(par1), Integer.valueOf(par2)));
 
         if (ret != null)
         {
@@ -65,8 +60,7 @@ public class RefineryRecipes
 
         } else
         {
-            ret = (ItemStack) refiningList.get(Arrays.asList(
-                    Integer.valueOf(par2), Integer.valueOf(par1)));
+            ret = (ItemStack) refiningList.get(Arrays.asList(Integer.valueOf(par2), Integer.valueOf(par1)));
 
             if (ret != null)
                 return ret;
@@ -84,9 +78,7 @@ public class RefineryRecipes
 
         float ret = item.getItem().getSmeltingExperience(item);
 
-        if (ret < 0
-                && experienceList.containsKey(Arrays.asList(item.itemID,
-                        item.getItemDamage())))
+        if (ret < 0 && experienceList.containsKey(Arrays.asList(item.itemID, item.getItemDamage())))
         {
             ret = ((Float) experienceList.get(Integer.valueOf(item.itemID)));
         }
